@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRoutes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ mongoose
 app.listen(3000, () => {
   console.log("Server is running on 3000");
 });
+app.use(cookieParser());
 
 //routes
 
