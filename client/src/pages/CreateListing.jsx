@@ -123,6 +123,7 @@ export default function CreateListing() {
     e.preventDefault();
     try {
       if (formData.imageUrls.length < 1) {
+        setError(true);
         return toast.error("Atleast you should upload one photo");
       }
       //adding + means to convert the string in number
