@@ -136,7 +136,7 @@ export default function Profile() {
       dispatch(signOutUserFailure(error));
     }
   };
-
+  // displaying the error
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
@@ -151,7 +151,7 @@ export default function Profile() {
       setShowListingsError(true);
     }
   };
-  //remove the particular listing
+  //remove the particular listing from all listing
   const handleListingDelete = async (listingId) => {
     try {
       const res = await fetch(`/api/listing/delete/${listingId}`, {
