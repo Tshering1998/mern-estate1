@@ -7,10 +7,14 @@ import authRouter from "./routes/authRoutes.js";
 import listingRouter from "./routes/listingRoutes.js";
 import cookieParser from "cookie-parser";
 
+import path from "path";
+
 dotenv.config();
 const app = express();
+
 app.use(express.json());
 
+const __dirname = path.resolve();
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -30,6 +34,12 @@ app.use(cookieParser());
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 //middleware to handle error
 
